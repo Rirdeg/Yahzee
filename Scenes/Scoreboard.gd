@@ -23,6 +23,7 @@ func update_scoreboard(results):
 	update_chance(results)
 	update_of_a_kind(3, results, three_of_a_kind)
 	update_of_a_kind(4, results, four_of_a_kind)
+	update_full_house(results)
 
 
 #We can optimize by breaking out of the loop if we go above our value,
@@ -41,8 +42,6 @@ func update_chance(results):
 	for i in results:
 		score = score + i 
 	$HBoxContainer/P1/ChanceP1.text = str(score)
-	results.sort()
-	print(results)
 
 
 func update_of_a_kind(kind_amount, results, label):
@@ -79,3 +78,20 @@ func update_of_a_kind(kind_amount, results, label):
 	else:
 		label.text = str(0)
 
+func update_full_house(results):
+	var valid = false
+	var counts = [0,0,0,0,0,0]
+	
+	for i in results:
+		counts[i - 1] = counts[i-1] + 1
+	
+	counts.sort() #0,0,0,2,3
+	if counts.back() == 3:
+		counts.pop_back()
+		if counts.back() == 2:
+			valid = true
+	else:
+		valid = false
+	
+	if valid:
+		$HBoxContainer/P1/FullHouseP1.text = str(25)
