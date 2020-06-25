@@ -25,6 +25,8 @@ func update_scoreboard(results):
 	update_of_a_kind(4, results, four_of_a_kind)
 
 
+#We can optimize by breaking out of the loop if we go above our value,
+#because the array has been sorted.
 
 func update_scorecard_digits(value, results, label):
 	var score = 0
