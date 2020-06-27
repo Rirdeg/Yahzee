@@ -274,6 +274,16 @@ __meta__ = {
 wait_time = 2.1
 one_shot = true
 
+[node name="ResetButton" type="Button" parent="CanvasLayer"]
+margin_left = 640.944
+margin_top = 538.0
+margin_right = 819.944
+margin_bottom = 600.0
+text = "Next Turn"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
 [node name="Label" type="Label" parent="CanvasLayer"]
 margin_top = 580.88
 margin_right = 40.0
@@ -281,5 +291,15 @@ margin_bottom = 594.88
 __meta__ = {
 "_edit_use_anchors_": false
 }
+
+[node name="Label2" type="Label" parent="CanvasLayer"]
+margin_left = 61.2168
+margin_top = 580.88
+margin_right = 101.217
+margin_bottom = 594.88
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
 [connection signal="timeout" from="CanvasLayer/Button/RollTimer" to="." method="_on_RollTimer_timeout"]
+[connection signal="pressed" from="CanvasLayer/ResetButton" to="." method="_on_ResetButton_pressed"]

@@ -22,12 +22,6 @@ func _ready():
 	dice.append(die5)
 	$CanvasLayer/Label.text = str(rolls_remaining)
 
-func _process(delta):
-	#This function wont be required and should be removed as game logic is developed
-	if Input.is_action_just_pressed("ui_accept"):
-		update_results()
-		$Scoreboard.update_scoreboard(results)
-
 
 func update_results():
 	#This will update the results array with each die value
@@ -36,6 +30,11 @@ func update_results():
 	results[2] = $Dice/Die3.value
 	results[3] = $Dice/Die4.value
 	results[4] = $Dice/Die5.value
+
+
+func reset_rolls():
+	rolls_remaining = 3
+	results = [0,0,0,0,0]
 
 
 func _on_Button_pressed():
@@ -51,5 +50,12 @@ func _on_Button_pressed():
 
 
 func _on_RollTimer_timeout():
+	update_results()
+	$CanvasLayer/Label2.text = str(results)
+	$Scoreboard.update_scoreboard(results)
 	if rolls_remaining >0:
 		$CanvasLayer/Button.disabled = false
+
+
+func _on_ResetButton_pressed():
+	reset_rolls()
