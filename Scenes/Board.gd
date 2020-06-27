@@ -22,25 +22,14 @@ func _process(delta):
 		die5.start_rolling()
 		
 	if Input.is_action_just_pressed("ui_accept"):
+		update_results()
 		$Scoreboard.update_scoreboard(results)
 
 
 
-func _on_Die1_finished_rolling():
-	results[0] = die1.value
-
-
-func _on_Die2_finished_rolling():
-	results[1] = die2.value
-
-
-func _on_Die3_finished_rolling():
-	results[2] = die3.value
-
-
-func _on_Die4_finished_rolling():
-	results[3] = die4.value
-
-
-func _on_Die5_finished_rolling():
-	results[4] = die5.value
+func update_results():
+	results[0] = $Dice/Die1.value
+	results[1] = $Dice/Die2.value
+	results[2] = $Dice/Die3.value
+	results[3] = $Dice/Die4.value
+	results[4] = $Dice/Die5.value

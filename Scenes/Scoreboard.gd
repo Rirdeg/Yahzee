@@ -9,6 +9,8 @@ onready var fives = $HBoxContainer/P1/FivesP1
 onready var sixes = $HBoxContainer/P1/SixesP1
 onready var three_of_a_kind = $HBoxContainer/P1/ThreeOfAKindP1
 onready var four_of_a_kind = $HBoxContainer/P1/FourOfAKindP1
+onready var sm_straight = $HBoxContainer/P1/SmallStraightP1
+onready var lg_straight = $HBoxContainer/P1/LargeStraightP1
 
 func update_scoreboard(results):
 	#We'll sort the results to make it easier to calculate some of the scores 
@@ -24,6 +26,9 @@ func update_scoreboard(results):
 	update_of_a_kind(3, results, three_of_a_kind)
 	update_of_a_kind(4, results, four_of_a_kind)
 	update_full_house(results)
+	update_straight(results, 4, sm_straight, 30)
+	update_straight(results, 5, lg_straight, 40)
+	update_yahzee(results)
 
 
 #We can optimize by breaking out of the loop if we go above our value,
@@ -95,3 +100,45 @@ func update_full_house(results):
 	
 	if valid:
 		$HBoxContainer/P1/FullHouseP1.text = str(25)
+
+
+func update_straight(results, straight_amnt, label, score):
+	var count = [0,0,0,0,0,0]
+	var straight_counter = 0
+	
+	for i in results:
+		count[i-1] = count[i-1] + 1
+	#Invert the array so we can loop backwards
+	count.invert()
+	#Loop through the array backwards deleting as we go.
+	while count.size() > 0:
+		if count[0] > 0:
+			straight_counter += 1
+			count.pop_front()
+		elif count[0] == 0 && straight_counter >= straight_amnt:
+			count.pop_front()
+		elif count[0] == 0 && straight_counter < straight_amnt:
+			straight_counter = 0
+			count.pop_front()
+		else:
+			print("This really shouldn't have happened. LET ME KNOW!")
+	
+	
+	if straight_counter >= straight_amnt:
+		label.text = str(score)
+	else:
+		label.text = str(0)
+
+
+func update_yahzee(results):
+	var count = [0,0,0,0,0,0]
+	
+	for i in results:
+		count[i-1] = count[i-1] + 1
+	
+	for i in count:
+		if i == 5:
+			$HBoxContainer/P1/YahzeeP1.text = str(50)
+			break
+		else:
+			$HBoxContainer/P1/YahzeeP1.text = str(0)
