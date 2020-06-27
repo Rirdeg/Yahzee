@@ -35,6 +35,9 @@ func update_results():
 func reset_rolls():
 	rolls_remaining = 3
 	results = [0,0,0,0,0]
+#	$Scoreboard.update_scoreboard(results)
+	$CanvasLayer/Button.disabled = false
+	$CanvasLayer/Label.text = str(3)
 
 
 func _on_Button_pressed():
