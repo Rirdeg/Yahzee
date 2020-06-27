@@ -5,15 +5,10 @@ var current_frame = 0
 var sides = 6 
 var held = false
 
-signal finished_rolling
 
 func _ready():
 	randomize()
 	current_frame = randi() % sides
-
-
-func _process(delta):
-	pass
 
 
 func start_rolling():
@@ -25,7 +20,6 @@ func start_rolling():
 func roll():
 	frame = randi() % sides
 	value = int(frame) + 1
-	emit_signal("finished_rolling")
 
 
 func _on_FrameSwitchTimer_timeout():

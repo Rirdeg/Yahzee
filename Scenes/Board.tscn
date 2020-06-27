@@ -269,9 +269,17 @@ text = "ROLL THE DICE"
 __meta__ = {
 "_edit_use_anchors_": false
 }
-[connection signal="finished_rolling" from="Dice/Die1" to="." method="_on_Die1_finished_rolling"]
-[connection signal="finished_rolling" from="Dice/Die2" to="." method="_on_Die2_finished_rolling"]
-[connection signal="finished_rolling" from="Dice/Die3" to="." method="_on_Die3_finished_rolling"]
-[connection signal="finished_rolling" from="Dice/Die4" to="." method="_on_Die4_finished_rolling"]
-[connection signal="finished_rolling" from="Dice/Die5" to="." method="_on_Die5_finished_rolling"]
+
+[node name="RollTimer" type="Timer" parent="CanvasLayer/Button"]
+wait_time = 2.1
+one_shot = true
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+margin_top = 580.88
+margin_right = 40.0
+margin_bottom = 594.88
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]
+[connection signal="timeout" from="CanvasLayer/Button/RollTimer" to="." method="_on_RollTimer_timeout"]
