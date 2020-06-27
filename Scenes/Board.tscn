@@ -257,8 +257,21 @@ margin_top = 288.0
 margin_right = 8.0
 margin_bottom = 302.0
 text = "0"
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Button" type="Button" parent="CanvasLayer"]
+margin_left = 845.0
+margin_top = 538.0
+margin_right = 1024.0
+margin_bottom = 600.0
+text = "ROLL THE DICE"
+__meta__ = {
+"_edit_use_anchors_": false
+}
 [connection signal="finished_rolling" from="Dice/Die1" to="." method="_on_Die1_finished_rolling"]
 [connection signal="finished_rolling" from="Dice/Die2" to="." method="_on_Die2_finished_rolling"]
 [connection signal="finished_rolling" from="Dice/Die3" to="." method="_on_Die3_finished_rolling"]
 [connection signal="finished_rolling" from="Dice/Die4" to="." method="_on_Die4_finished_rolling"]
 [connection signal="finished_rolling" from="Dice/Die5" to="." method="_on_Die5_finished_rolling"]
+[connection signal="pressed" from="CanvasLayer/Button" to="." method="_on_Button_pressed"]

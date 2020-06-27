@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://assets/dice.png" type="Texture" id=1]
 [ext_resource path="res://Scenes/Die.gd" type="Script" id=2]
@@ -35,6 +35,9 @@ animations = [ {
 "speed": 5.0
 } ]
 
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 8.1543, 8.22055 )
+
 [node name="Die" type="AnimatedSprite"]
 position = Vector2( 36.0208, 28.6047 )
 scale = Vector2( 5, 5 )
@@ -48,5 +51,11 @@ one_shot = true
 
 [node name="FrameSwitchTimer" type="Timer" parent="."]
 wait_time = 0.1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 8 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="timeout" from="FrameSwitchTimer" to="." method="_on_FrameSwitchTimer_timeout"]
+[connection signal="input_event" from="Area2D" to="." method="_on_Area2D_input_event"]
