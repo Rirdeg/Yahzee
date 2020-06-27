@@ -100,6 +100,8 @@ func update_full_house(results):
 	
 	if valid:
 		$HBoxContainer/P1/FullHouseP1.text = str(25)
+	else:
+		$HBoxContainer/P1/FullHouseP1.text = str(0)
 
 
 func update_straight(results, straight_amnt, label, score):
