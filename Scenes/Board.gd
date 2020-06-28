@@ -36,8 +36,13 @@ func reset_rolls():
 	rolls_remaining = 3
 	results = [0,0,0,0,0]
 #	$Scoreboard.update_scoreboard(results)
+	$Scoreboard.reset_labels()
 	$CanvasLayer/Button.disabled = false
 	$CanvasLayer/Label.text = str(3)
+	#RESET HELD DICE
+	for i in dice:
+		if i.held:
+			i.hold_die()
 
 
 func _on_Button_pressed():

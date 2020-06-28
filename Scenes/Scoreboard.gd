@@ -7,10 +7,30 @@ onready var threes = $HBoxContainer/P1/ThreesP1
 onready var fours = $HBoxContainer/P1/FoursP1
 onready var fives = $HBoxContainer/P1/FivesP1
 onready var sixes = $HBoxContainer/P1/SixesP1
+onready var bonus = $HBoxContainer/P1/BonusP1
+onready var chance = $HBoxContainer/P1/ChanceP1
 onready var three_of_a_kind = $HBoxContainer/P1/ThreeOfAKindP1
 onready var four_of_a_kind = $HBoxContainer/P1/FourOfAKindP1
 onready var sm_straight = $HBoxContainer/P1/SmallStraightP1
 onready var lg_straight = $HBoxContainer/P1/LargeStraightP1
+onready var yahzee = $HBoxContainer/P1/YahzeeP1
+
+var labels = []
+
+func _ready():
+	labels.append(ones)
+	labels.append(twos)
+	labels.append(threes)
+	labels.append(fours)
+	labels.append(fives)
+	labels.append(sixes)
+	labels.append(bonus)
+	labels.append(chance)
+	labels.append(three_of_a_kind)
+	labels.append(four_of_a_kind)
+	labels.append(sm_straight)
+	labels.append(lg_straight)
+	labels.append(yahzee)
 
 func update_scoreboard(results):
 	#We'll sort the results to make it easier to calculate some of the scores 
@@ -144,3 +164,8 @@ func update_yahzee(results):
 			break
 		else:
 			$HBoxContainer/P1/YahzeeP1.text = str(0)
+
+
+func reset_labels():
+	for i in labels:
+		i.text = "0"
